@@ -51,6 +51,7 @@ jobsRouter.post(
     const sequelize = req.app.get("sequelize");
     // use a managed transaction to perform the payment and update related records
     // We will use pesimistic locking throuhout the transaction to ensure data consistency
+    // Pesimistic lock, using lock: true works fine in Postgres (produces a FOR UPDATE query). It seems sqlite doesn't have this functionality.
     try {
       await sequelize.transaction(async (t) => {
         const job = await Job.findOne({
