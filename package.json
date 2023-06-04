@@ -11,7 +11,7 @@
   "scripts": {
     "start": "nodemon ./src/server.js",
     "seed": "node ./scripts/seedDb.js",
-    "test": "(rm ./database.sqlite3 && echo 'Successfully removed existing database' || echo 'No existing database found') && npm run seed"
+    "test": "(rm ./database.sqlite3 && echo 'Successfully removed existing database' || echo 'No existing database found') && npm run seed && npx jest ./__tests__/admin.js"
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
