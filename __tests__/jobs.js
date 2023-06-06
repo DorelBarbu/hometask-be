@@ -15,7 +15,7 @@ describe("GET /jobs/unpaid", () => {
 
 describe("POST /jobs/:job_id/pay", () => {
   it("Should successfully pay for a job", async () => {
-    const { Job, Contract, Profile } = app.get("models");
+    const { Job, Profile } = app.get("models");
     // The following ids were chosen by inspecting the contract with id 1.
     const clientId = 1;
     const contractorId = 5;
@@ -75,10 +75,7 @@ describe("POST /jobs/:job_id/pay", () => {
   });
 
   it("Should return 400 if trying to pay for a job without enough balance", async () => {
-    const { Job, Contract, Profile } = app.get("models");
-    // The following ids were chosen by inspecting the contract with id 1.
-    const clientId = 1;
-    const contractorId = 5;
+    const { Job } = app.get("models");
     // Create a new job for the contract with id 1. The job price exceeds the client balance
     const jobBefore = (
       await Job.create({

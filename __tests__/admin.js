@@ -3,7 +3,6 @@ const request = require("supertest");
 
 describe("GET /admin/best-profession?start=<date>&end=<date>", () => {
   it("Should return the best profession", async () => {
-    const { Profile } = app.get("models");
     const startDate = new Date("2019-01-02T00:00:00Z");
     const endDate = new Date();
     const response = await request(app)
@@ -21,7 +20,6 @@ describe("GET /admin/best-profession?start=<date>&end=<date>", () => {
 
 describe("GET /admin/best-clients?start=<date>&end=<date>&limit=<integer>", () => {
   it("Should return the best client", async () => {
-    const { Profile } = app.get("models");
     const startDate = new Date("2019-01-02T00:00:00Z");
     const endDate = new Date();
     const response = await request(app)

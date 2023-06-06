@@ -58,7 +58,6 @@ adminRouter.get("/best-profession", getProfile, async (req, res, next) => {
       raw: true,
       order: [[sequelize.literal("total"), "DESC"]],
     });
-    console.log(queryResult);
     res.json(queryResult[0]).end();
   } catch (err) {
     console.log(err);
@@ -86,8 +85,6 @@ adminRouter.get("/best-clients", getProfile, async (req, res, next) => {
   }
   const startDate = new Date(start);
   const endDate = new Date(end);
-  console.log("startDate", startDate);
-  console.log("endDate", endDate);
   try {
     const queryResult = await Profile.findAll({
       where: {
@@ -97,8 +94,6 @@ adminRouter.get("/best-clients", getProfile, async (req, res, next) => {
       attributes: [
         [sequelize.fn("SUM", sequelize.col("Client.Jobs.price")), "total"],
         [sequelize.literal('Profile.firstName || " " || Profile.lastName'), 'fullName']
-        // "Profile.firstname",
-        // "Profile.lastName",
       ],
       include: [
         {
